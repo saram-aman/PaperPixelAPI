@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Folder {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) @db.Uuid
   name      String
   parentId  String?  @db.Uuid
   createdAt DateTime @default(now())
@@ -18,11 +18,11 @@ model Folder {
 }
 
 model File {
-  id        String   @id @default(uuid())
+  id        String   @id @default(uuid()) @db.Uuid
   name      String
   type      String
   path      String
-  folderId  String
+  folderId  String   @db.Uuid
   createdAt DateTime @default(now())
   folder    Folder   @relation(fields: [folderId], references: [id])
 }
